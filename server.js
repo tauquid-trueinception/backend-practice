@@ -1,11 +1,9 @@
-import express from "express";
+const dbConnect = require("./mongoconfig");
 
-const app = express();
+const main = async () => {
+  let data = await dbConnect();
+  data = await data.find({}).toArray();
+  console.log(data);
+};
 
-app.get("/", (req, res) => {
-  res.send("Hello from the backend");
-});
-
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
-});
+main();
